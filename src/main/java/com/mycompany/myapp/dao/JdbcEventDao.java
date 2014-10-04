@@ -157,6 +157,16 @@ public class JdbcEventDao implements EventDao {
 	
 	@Override
 	public void deleteAll() {
-		// Assignment 2
+		Connection c;
+		try {
+			c = dataSource.getConnection();
+			PreparedStatement ps = c.prepareStatement("delete from events");
+			ps.executeUpdate();
+			ps.close();
+			c.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
